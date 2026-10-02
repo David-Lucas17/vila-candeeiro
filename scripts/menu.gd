@@ -12,6 +12,8 @@ func _ready():
 	%BtnRules.pressed.connect(func(): %RulesPanel.visible = true)
 	%BtnCloseRules.pressed.connect(func(): %RulesPanel.visible = false)
 	%BtnQuit.pressed.connect(func(): get_tree().quit())
+	if OS.has_feature("web"):
+		%BtnQuit.visible = false
 
 	%AmbVento.finished.connect(%AmbVento.play)
 	%AmbVento.play()
@@ -35,7 +37,9 @@ func _unhandled_input(event):
 	match event.keycode:
 		KEY_ENTER, KEY_SPACE: _start()
 		KEY_H: %RulesPanel.visible = true
-		KEY_ESCAPE: get_tree().quit()
+		KEY_ESCAPE:
+			if not OS.has_feature("web"):
+				get_tree().quit()
 
 func _start():
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
