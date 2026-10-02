@@ -1,0 +1,16 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="16" fill="#120b08"/>
+  <radialGradient id="halo" cx="50%" cy="42%" r="50%">
+    <stop offset="0%" stop-color="#ffcc66" stop-opacity="0.95"/>
+    <stop offset="55%" stop-color="#e07a1f" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="#e07a1f" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="64" cy="54" r="56" fill="url(#halo)"/>
+  <!-- chama -->
+  <path d="M64 26 C72 40 76 46 76 54 C76 64 70 70 64 70 C58 70 52 64 52 54 C52 46 56 40 64 26 Z" fill="#ffd27f"/>
+  <path d="M64 38 C68 47 70 50 70 56 C70 62 67 65 64 65 C61 65 58 62 58 56 C58 50 60 47 64 38 Z" fill="#fff6d8"/>
+  <!-- bojo do candeeiro -->
+  <path d="M40 78 L88 78 L82 104 C82 108 78 110 74 110 L54 110 C50 110 46 108 46 104 Z" fill="#6b4a2a"/>
+  <rect x="56" y="70" width="16" height="10" rx="2" fill="#8a6136"/>
+  <rect x="34" y="104" width="60" height="8" rx="4" fill="#4a3220"/>
+</svg>

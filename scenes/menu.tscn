@@ -1,0 +1,201 @@
+[gd_scene format=3]
+
+[ext_resource type="Theme" path="res://assets/ui_theme.tres" id="1_13sgg"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="2_i6lef"]
+[ext_resource type="Shader" path="res://shaders/taipa.gdshader" id="3_70i5f"]
+[ext_resource type="Script" path="res://scripts/lamp.gd" id="4_mj5lg"]
+[ext_resource type="Shader" path="res://shaders/vinheta.gdshader" id="5_ufwb2"]
+[ext_resource type="FontFile" path="res://assets/fonts/DejaVuSerif-Bold.ttf" id="6_6cdou"]
+[ext_resource type="AudioStream" path="res://assets/audio/amb_vento.wav" id="7_i42df"]
+[ext_resource type="AudioStream" path="res://assets/audio/amb_candeeiro.wav" id="8_7jp70"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxgkd"]
+shader = ExtResource("3_70i5f")
+shader_parameter/light_energy = 1.0
+shader_parameter/light_pos = Vector2(0.203, 0.673)
+shader_parameter/flicker = 1.0
+shader_parameter/clay_color = null
+shader_parameter/flame_color = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g6gyw"]
+shader = ExtResource("5_ufwb2")
+shader_parameter/darkness = 0.48
+shader_parameter/radius = 0.72
+shader_parameter/softness = null
+shader_parameter/grain = null
+shader_parameter/night_color = null
+shader_parameter/dread = 0.05
+
+[node name="Menu" type="Control" unique_id=1904072214]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_13sgg")
+script = ExtResource("2_i6lef")
+
+[node name="Taipa" type="ColorRect" parent="." unique_id=461299622]
+material = SubResource("ShaderMaterial_mxgkd")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Lamp" type="Node2D" parent="." unique_id=24277899]
+unique_name_in_owner = true
+position = Vector2(0, 130)
+scale = Vector2(0.78, 0.78)
+script = ExtResource("4_mj5lg")
+
+[node name="Vinheta" type="ColorRect" parent="." unique_id=135261651]
+material = SubResource("ShaderMaterial_g6gyw")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="UI" type="MarginContainer" parent="." unique_id=1486943014]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 28
+
+[node name="Cols" type="HBoxContainer" parent="UI" unique_id=214676699]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Gap" type="Control" parent="UI/Cols" unique_id=1355936396]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.85
+mouse_filter = 2
+
+[node name="Right" type="VBoxContainer" parent="UI/Cols" unique_id=1871495886]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.15
+theme_override_constants/separation = 14
+
+[node name="TitleBox" type="VBoxContainer" parent="UI/Cols/Right" unique_id=304289223]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Kicker" type="Label" parent="UI/Cols/Right/TitleBox" unique_id=499383745]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.60784316, 0.54509807, 0.45490196, 1)
+text = "NOITES CABULOSAS NO CEARÁ"
+
+[node name="Title" type="Label" parent="UI/Cols/Right/TitleBox" unique_id=795843005]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_6cdou")
+theme_override_font_sizes/font_size = 44
+theme_override_colors/font_color = Color(1, 0.7019608, 0.2784314, 1)
+text = "A VIGÍLIA
+DO CANDEEIRO"
+
+[node name="IntroPanel" type="PanelContainer" parent="UI/Cols/Right" unique_id=496593189]
+layout_mode = 2
+
+[node name="Intro" type="RichTextLabel" parent="UI/Cols/Right/IntroPanel" unique_id=247912891]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Buttons" type="VBoxContainer" parent="UI/Cols/Right" unique_id=828596468]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="BtnStart" type="Button" parent="UI/Cols/Right/Buttons" unique_id=705318839]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Começar a vigília  ·  Enter"
+
+[node name="BtnRules" type="Button" parent="UI/Cols/Right/Buttons" unique_id=1605760878]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Como se vela um corpo  ·  H"
+
+[node name="BtnQuit" type="Button" parent="UI/Cols/Right/Buttons" unique_id=775900846]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sair  ·  Esc"
+
+[node name="RulesPanel" type="Control" parent="." unique_id=902869285]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RulesPanelDim" type="ColorRect" parent="RulesPanel" unique_id=2138606083]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.01, 0.008, 0.92)
+
+[node name="RulesPanelCenter" type="CenterContainer" parent="RulesPanel" unique_id=1963144191]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RulesPanelBox" type="PanelContainer" parent="RulesPanel/RulesPanelCenter" unique_id=2086451592]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="RulesCol" type="VBoxContainer" parent="RulesPanel/RulesPanelCenter/RulesPanelBox" unique_id=506488899]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RulesTitle" type="Label" parent="RulesPanel/RulesPanelCenter/RulesPanelBox/RulesCol" unique_id=1788134652]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_6cdou")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.7019608, 0.2784314, 1)
+text = "COMO SE VELA UM CORPO"
+
+[node name="RulesTextScroll" type="ScrollContainer" parent="RulesPanel/RulesPanelCenter/RulesPanelBox/RulesCol" unique_id=837338625]
+custom_minimum_size = Vector2(0, 380)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RulesText" type="RichTextLabel" parent="RulesPanel/RulesPanelCenter/RulesPanelBox/RulesCol/RulesTextScroll" unique_id=1227115854]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="BtnCloseRules" type="Button" parent="RulesPanel/RulesPanelCenter/RulesPanelBox/RulesCol" unique_id=600090024]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fechar  ·  Esc"
+
+[node name="AmbVento" type="AudioStreamPlayer" parent="." unique_id=1975397350]
+unique_name_in_owner = true
+stream = ExtResource("7_i42df")
+volume_db = -17.0
+
+[node name="AmbCandeeiro" type="AudioStreamPlayer" parent="." unique_id=871634384]
+unique_name_in_owner = true
+stream = ExtResource("8_7jp70")
+volume_db = -24.0

@@ -1,0 +1,513 @@
+[gd_scene format=3]
+
+[ext_resource type="Theme" path="res://assets/ui_theme.tres" id="1_1kice"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="2_5newe"]
+[ext_resource type="Shader" path="res://shaders/taipa.gdshader" id="3_37s47"]
+[ext_resource type="Script" path="res://scripts/lamp.gd" id="4_bt5mj"]
+[ext_resource type="Shader" path="res://shaders/vinheta.gdshader" id="5_e1j6l"]
+[ext_resource type="FontFile" path="res://assets/fonts/DejaVuSerif-Bold.ttf" id="6_pl11u"]
+[ext_resource type="AudioStream" path="res://assets/audio/amb_vento.wav" id="7_bhx41"]
+[ext_resource type="AudioStream" path="res://assets/audio/amb_candeeiro.wav" id="8_qnb83"]
+[ext_resource type="AudioStream" path="res://assets/audio/amb_coracao.wav" id="9_sww3w"]
+[ext_resource type="AudioStream" path="res://assets/audio/acao_azeite.wav" id="10_suyxu"]
+[ext_resource type="AudioStream" path="res://assets/audio/acao_sal.wav" id="11_sgl2t"]
+[ext_resource type="AudioStream" path="res://assets/audio/acao_reza.wav" id="12_qouja"]
+[ext_resource type="AudioStream" path="res://assets/audio/acao_trago.wav" id="13_wljb1"]
+[ext_resource type="AudioStream" path="res://assets/audio/acao_escutar.wav" id="14_v2yb1"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_susto.wav" id="15_js0lu"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_defesa.wav" id="16_gxtfn"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx_hora.wav" id="17_twgab"]
+[ext_resource type="AudioStream" path="res://assets/audio/fim_amanhecer.wav" id="18_02fa5"]
+[ext_resource type="AudioStream" path="res://assets/audio/fim_escuro.wav" id="19_nepv3"]
+[ext_resource type="AudioStream" path="res://assets/audio/fim_fuga.wav" id="20_7025r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4url"]
+shader = ExtResource("3_37s47")
+shader_parameter/light_energy = 1.0
+shader_parameter/light_pos = Vector2(0.26, 0.6)
+shader_parameter/flicker = 1.0
+shader_parameter/clay_color = null
+shader_parameter/flame_color = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ool0"]
+shader = ExtResource("5_e1j6l")
+shader_parameter/darkness = 0.35
+shader_parameter/radius = null
+shader_parameter/softness = null
+shader_parameter/grain = null
+shader_parameter/night_color = null
+shader_parameter/dread = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pr1ej"]
+bg_color = Color(0.8784314, 0.5411765, 0.14901961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05nbr"]
+bg_color = Color(0.65882355, 0.22352941, 0.17254902, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Game" type="Control" unique_id=1252947137]
+layout_mode = 3
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_1kice")
+script = ExtResource("2_5newe")
+
+[node name="Taipa" type="ColorRect" parent="." unique_id=1172687474]
+material = SubResource("ShaderMaterial_m4url")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Lamp" type="Node2D" parent="." unique_id=493964386]
+unique_name_in_owner = true
+script = ExtResource("4_bt5mj")
+
+[node name="Vinheta" type="ColorRect" parent="." unique_id=1416029497]
+material = SubResource("ShaderMaterial_8ool0")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="UI" type="MarginContainer" parent="." unique_id=1498381082]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="Cols" type="HBoxContainer" parent="UI" unique_id=214377528]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Left" type="VBoxContainer" parent="UI/Cols" unique_id=1422022181]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.42
+theme_override_constants/separation = 10
+
+[node name="TitleBox" type="VBoxContainer" parent="UI/Cols/Left" unique_id=1549949796]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="UI/Cols/Left/TitleBox" unique_id=175539484]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pl11u")
+theme_override_font_sizes/font_size = 25
+theme_override_colors/font_color = Color(1, 0.7019608, 0.2784314, 1)
+text = "A VIGÍLIA DO CANDEEIRO"
+
+[node name="Place" type="Label" parent="UI/Cols/Left/TitleBox" unique_id=708593083]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.60784316, 0.54509807, 0.45490196, 1)
+text = "sertão central do Ceará · 1932"
+
+[node name="Stage" type="PanelContainer" parent="UI/Cols/Left" unique_id=1641909862]
+layout_mode = 2
+
+[node name="StageText" type="RichTextLabel" parent="UI/Cols/Left/Stage" unique_id=54080357]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 132)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = false
+
+[node name="Gap" type="Control" parent="UI/Cols/Left" unique_id=2032922224]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Actions" type="GridContainer" parent="UI/Cols/Left" unique_id=937123691]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="BtnAzeite" type="Button" parent="UI/Cols/Left/Actions" unique_id=876812523]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1 · Pingar azeite"
+
+[node name="BtnSal" type="Button" parent="UI/Cols/Left/Actions" unique_id=845757055]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2 · Jogar sal"
+
+[node name="BtnReza" type="Button" parent="UI/Cols/Left/Actions" unique_id=377967952]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3 · Fazer uma oração"
+
+[node name="BtnTrago" type="Button" parent="UI/Cols/Left/Actions" unique_id=766463392]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4 · Tomar um trago"
+
+[node name="BtnEscutar" type="Button" parent="UI/Cols/Left/Actions" unique_id=1862462568]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5 · Escutar"
+
+[node name="BtnHelp" type="Button" parent="UI/Cols/Left/Actions" unique_id=150624962]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "H · O que a vó ensinou"
+
+[node name="Right" type="VBoxContainer" parent="UI/Cols" unique_id=886446062]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Head" type="PanelContainer" parent="UI/Cols/Right" unique_id=1667993148]
+layout_mode = 2
+
+[node name="HeadCol" type="VBoxContainer" parent="UI/Cols/Right/Head" unique_id=45175157]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ClockRow" type="HBoxContainer" parent="UI/Cols/Right/Head/HeadCol" unique_id=1817691492]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Clock" type="Label" parent="UI/Cols/Right/Head/HeadCol/ClockRow" unique_id=1286713789]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("6_pl11u")
+theme_override_font_sizes/font_size = 34
+theme_override_colors/font_color = Color(1, 0.7019608, 0.2784314, 1)
+text = "22h"
+
+[node name="HoursLeft" type="Label" parent="UI/Cols/Right/Head/HeadCol/ClockRow" unique_id=1177204795]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.60784316, 0.54509807, 0.45490196, 1)
+text = "faltam 8 horas"
+vertical_alignment = 2
+
+[node name="LightRow" type="HBoxContainer" parent="UI/Cols/Right/Head/HeadCol" unique_id=1429872050]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LightCaption" type="Label" parent="UI/Cols/Right/Head/HeadCol/LightRow" unique_id=1152539264]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.60784316, 0.54509807, 0.45490196, 1)
+text = "LUZ"
+
+[node name="LightBar" type="ProgressBar" parent="UI/Cols/Right/Head/HeadCol/LightRow" unique_id=1626668096]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_pr1ej")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="LightValue" type="Label" parent="UI/Cols/Right/Head/HeadCol/LightRow" unique_id=506848279]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.9372549, 0.8784314, 0.7764706, 1)
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="FearRow" type="HBoxContainer" parent="UI/Cols/Right/Head/HeadCol" unique_id=905339880]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FearCaption" type="Label" parent="UI/Cols/Right/Head/HeadCol/FearRow" unique_id=1696683087]
+custom_minimum_size = Vector2(54, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.60784316, 0.54509807, 0.45490196, 1)
+text = "MEDO"
+
+[node name="FearBar" type="ProgressBar" parent="UI/Cols/Right/Head/HeadCol/FearRow" unique_id=661110212]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_05nbr")
+max_value = 10.0
+value = 10.0
+show_percentage = false
+
+[node name="FearValue" type="Label" parent="UI/Cols/Right/Head/HeadCol/FearRow" unique_id=427479017]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(46, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.9372549, 0.8784314, 0.7764706, 1)
+text = "0/0"
+horizontal_alignment = 2
+
+[node name="StockRow" type="HBoxContainer" parent="UI/Cols/Right/Head/HeadCol" unique_id=304457683]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="StockOil" type="Label" parent="UI/Cols/Right/Head/HeadCol/StockRow" unique_id=655147947]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.9372549, 0.8784314, 0.7764706, 1)
+text = "Azeite  ●●●●●"
+
+[node name="StockSalt" type="Label" parent="UI/Cols/Right/Head/HeadCol/StockRow" unique_id=491595118]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.9372549, 0.8784314, 0.7764706, 1)
+text = "Sal  ●●●"
+
+[node name="StockBooze" type="Label" parent="UI/Cols/Right/Head/HeadCol/StockRow" unique_id=1641993353]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.9372549, 0.8784314, 0.7764706, 1)
+text = "Cana  ●●"
+
+[node name="LogPanel" type="PanelContainer" parent="UI/Cols/Right" unique_id=2095157423]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogCol" type="VBoxContainer" parent="UI/Cols/Right/LogPanel" unique_id=1366148979]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="LogTitle" type="Label" parent="UI/Cols/Right/LogPanel/LogCol" unique_id=866872377]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.60784316, 0.54509807, 0.45490196, 1)
+text = "REGISTRO DA NOITE"
+
+[node name="LogScroll" type="ScrollContainer" parent="UI/Cols/Right/LogPanel/LogCol" unique_id=698574218]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="LogText" type="RichTextLabel" parent="UI/Cols/Right/LogPanel/LogCol/LogScroll" unique_id=1385824551]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="HelpPanel" type="Control" parent="." unique_id=800035972]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HelpPanelDim" type="ColorRect" parent="HelpPanel" unique_id=1989842551]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.01, 0.008, 0.9)
+
+[node name="HelpPanelCenter" type="CenterContainer" parent="HelpPanel" unique_id=1736266018]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HelpPanelBox" type="PanelContainer" parent="HelpPanel/HelpPanelCenter" unique_id=1352457988]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="HelpCol" type="VBoxContainer" parent="HelpPanel/HelpPanelCenter/HelpPanelBox" unique_id=1697585869]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HelpTitle" type="Label" parent="HelpPanel/HelpPanelCenter/HelpPanelBox/HelpCol" unique_id=259570989]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pl11u")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.7019608, 0.2784314, 1)
+text = "O QUE A VÓ ENSINOU"
+
+[node name="RulesTextScroll" type="ScrollContainer" parent="HelpPanel/HelpPanelCenter/HelpPanelBox/HelpCol" unique_id=26264866]
+custom_minimum_size = Vector2(0, 380)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="RulesText" type="RichTextLabel" parent="HelpPanel/HelpPanelCenter/HelpPanelBox/HelpCol/RulesTextScroll" unique_id=395430080]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="BtnCloseHelp" type="Button" parent="HelpPanel/HelpPanelCenter/HelpPanelBox/HelpCol" unique_id=1952797309]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fechar  ·  Esc"
+
+[node name="EndPanel" type="Control" parent="." unique_id=86428316]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="EndPanelDim" type="ColorRect" parent="EndPanel" unique_id=1168851241]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.01, 0.008, 0.93)
+
+[node name="EndPanelCenter" type="CenterContainer" parent="EndPanel" unique_id=1513946745]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="EndPanelBox" type="PanelContainer" parent="EndPanel/EndPanelCenter" unique_id=662809535]
+custom_minimum_size = Vector2(760, 0)
+layout_mode = 2
+
+[node name="EndCol" type="VBoxContainer" parent="EndPanel/EndPanelCenter/EndPanelBox" unique_id=2080855221]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="EndTitle" type="Label" parent="EndPanel/EndPanelCenter/EndPanelBox/EndCol" unique_id=1196610791]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_pl11u")
+theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(1, 0.7019608, 0.2784314, 1)
+text = "O GALO CANTOU"
+horizontal_alignment = 1
+
+[node name="EndText" type="RichTextLabel" parent="EndPanel/EndPanelCenter/EndPanelBox/EndCol" unique_id=998767896]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 258)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+scroll_active = false
+
+[node name="EndButtons" type="HBoxContainer" parent="EndPanel/EndPanelCenter/EndPanelBox/EndCol" unique_id=1813188966]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BtnAgain" type="Button" parent="EndPanel/EndPanelCenter/EndPanelBox/EndCol/EndButtons" unique_id=2095238320]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Velar outra noite  ·  R"
+
+[node name="BtnMenu" type="Button" parent="EndPanel/EndPanelCenter/EndPanelBox/EndCol/EndButtons" unique_id=1123028823]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Voltar ao começo"
+
+[node name="AmbVento" type="AudioStreamPlayer" parent="." unique_id=839179508]
+unique_name_in_owner = true
+stream = ExtResource("7_bhx41")
+volume_db = -17.0
+
+[node name="AmbCandeeiro" type="AudioStreamPlayer" parent="." unique_id=516825890]
+unique_name_in_owner = true
+stream = ExtResource("8_qnb83")
+volume_db = -24.0
+
+[node name="AmbCoracao" type="AudioStreamPlayer" parent="." unique_id=96586238]
+unique_name_in_owner = true
+stream = ExtResource("9_sww3w")
+volume_db = -40.0
+
+[node name="SfxAzeite" type="AudioStreamPlayer" parent="." unique_id=791937782]
+unique_name_in_owner = true
+stream = ExtResource("10_suyxu")
+volume_db = -8.0
+
+[node name="SfxSal" type="AudioStreamPlayer" parent="." unique_id=798485901]
+unique_name_in_owner = true
+stream = ExtResource("11_sgl2t")
+volume_db = -8.0
+
+[node name="SfxReza" type="AudioStreamPlayer" parent="." unique_id=1670041126]
+unique_name_in_owner = true
+stream = ExtResource("12_qouja")
+volume_db = -10.0
+
+[node name="SfxTrago" type="AudioStreamPlayer" parent="." unique_id=1864240678]
+unique_name_in_owner = true
+stream = ExtResource("13_wljb1")
+volume_db = -8.0
+
+[node name="SfxEscutar" type="AudioStreamPlayer" parent="." unique_id=94246511]
+unique_name_in_owner = true
+stream = ExtResource("14_v2yb1")
+volume_db = -12.0
+
+[node name="SfxSusto" type="AudioStreamPlayer" parent="." unique_id=1915694024]
+unique_name_in_owner = true
+stream = ExtResource("15_js0lu")
+volume_db = -6.0
+
+[node name="SfxDefesa" type="AudioStreamPlayer" parent="." unique_id=1680713336]
+unique_name_in_owner = true
+stream = ExtResource("16_gxtfn")
+volume_db = -9.0
+
+[node name="SfxHora" type="AudioStreamPlayer" parent="." unique_id=467212224]
+unique_name_in_owner = true
+stream = ExtResource("17_twgab")
+volume_db = -12.0
+
+[node name="FimAmanhecer" type="AudioStreamPlayer" parent="." unique_id=251772558]
+unique_name_in_owner = true
+stream = ExtResource("18_02fa5")
+volume_db = -6.0
+
+[node name="FimEscuro" type="AudioStreamPlayer" parent="." unique_id=141198170]
+unique_name_in_owner = true
+stream = ExtResource("19_nepv3")
+volume_db = -5.0
+
+[node name="FimFuga" type="AudioStreamPlayer" parent="." unique_id=374340099]
+unique_name_in_owner = true
+stream = ExtResource("20_7025r")
+volume_db = -6.0
